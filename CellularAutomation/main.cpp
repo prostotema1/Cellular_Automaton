@@ -2,14 +2,14 @@
 #include<iostream>
 #include<Windows.h>
 #include <ctime>
-#include"SDL.h"
+#include"include/SDL.h"
 const unsigned int LIMIT_RATE = 0;
 const unsigned int TICK_RATE =50;
-#undef main;
+
 
 //Best settings Height = 500, wight = 500, cell_size = 10;
-
-void main(){
+#undef main
+int main(){
 	Field f;
 	std::cout << "Enter the size of the field \nHeight = ";
 	int height;
@@ -52,4 +52,5 @@ void main(){
 	SDL_DestroyWindow(f.window);
 	SDL_Quit();
 	f.cleaning();
+	return 0;
 }

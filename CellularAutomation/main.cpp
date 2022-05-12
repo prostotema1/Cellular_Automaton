@@ -3,9 +3,11 @@
 #include<Windows.h>
 #include <ctime>
 #include<SDL.h>
-const unsigned int LIMIT_RATE = 1;
+const unsigned int LIMIT_RATE = 0;
 const unsigned int TICK_RATE =50;
 #undef main;
+
+//Best settings Height = 500, wight = 500, cell_size = 10;
 
 void main(){
 	Field f;
@@ -45,7 +47,6 @@ void main(){
 	f.init_graphic();
 	for (int i = 0; i < generations; i++){
 		f.next_iteration();
-		SDL_UpdateWindowSurface(f.window);
 		if (LIMIT_RATE) { SDL_Delay(TICK_RATE); }
 	}
 	SDL_DestroyWindow(f.window);

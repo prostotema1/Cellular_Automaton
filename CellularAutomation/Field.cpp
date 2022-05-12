@@ -142,6 +142,7 @@ void Field::next_iteration() {
 	}
 	this->cleaning();
 	std::swap(this->field, copy);
+	SDL_UpdateWindowSurface(window);
 	//delete copy;
 }
 

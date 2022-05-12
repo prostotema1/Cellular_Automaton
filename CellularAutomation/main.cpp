@@ -3,11 +3,11 @@
 #include<Windows.h>
 #include <ctime>
 #include"include/SDL.h"
-const unsigned int LIMIT_RATE = 0;
+const unsigned int LIMIT_RATE = 1;
 const unsigned int TICK_RATE =50;
 
 
-//Best settings Height = 500, wight = 500, cell_size = 10;
+//Best settings Height = 500, wight = 500, cell_size = 5;
 #undef main
 int main(){
 	Field f;
@@ -40,6 +40,8 @@ int main(){
 	std::cout << "\nField has been generated\nEnter the number of generations\nGenerations = ";
 	int generations;
 	std::cin >> generations;
+	
+	
 	while (generations < 0) {
 		std::cout << "\nWrong data. Enter the right one\nGenerations = ";
 		std::cin >> generations;

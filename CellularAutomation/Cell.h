@@ -1,12 +1,11 @@
 #pragma once
-enum Cell_status { alive = 1, dead = 2 };
 class Cell
 {
 public:
-	Cell_status status;
+	bool alive_or_not;// True = alive, dead = false
 	void update_status(bool dead_or_alive);
-	int get_status() {
-		return status;
+	bool get_status() {
+		return this->alive_or_not;
 	}
 	void Draw_Cell(unsigned int x, unsigned int y, unsigned int colour);
 };

@@ -15,7 +15,7 @@ class Field
 	unsigned int cell_size;
 	
 	inline bool get_cell_status(int x, int y) {
-		return field[x][y].status;
+		return field[x][y].alive_or_not;
 	}
 
 public:

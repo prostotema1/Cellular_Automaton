@@ -3,10 +3,10 @@ void Cell::update_status(bool dead_or_alive) {
 	switch (dead_or_alive)
 	{
 	case false:
-		status = dead;
+		alive_or_not = false;
 		break;
 	case true:
-		status = alive;
+		alive_or_not = true;
 		break;
 	default:
 		break;

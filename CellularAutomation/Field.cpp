@@ -34,7 +34,7 @@ void Field::Draw_cell(unsigned int x, unsigned int y, unsigned int colour) {
 void Field::print_field() {
 	for (size_t i = 0; i < height; i++) {
 		for (size_t j = 0; j < wight; j++) {
-			if (field[i][j].get_status() == 1) {
+			if (field[i][j].get_status() == true) {
 				std::cout << "*";
 			}
 			else {
@@ -55,56 +55,56 @@ bool Field::update_status(int x, int y) {
 			if (i != 0 || j != 0) {
 				if (x + i < 0) {
 					if (y + j < 0) {
-						if (field[height - 1][wight - 1].get_status() == 1) {
+						if (field[height - 1][wight - 1].get_status() == true) {
 							counter_alive++;
 						}
 						else { counter_dead++; }
 					}
 					else if (y + j > wight - 1) {
-						if (field[height - 1][0].get_status() == 1) { counter_alive++; }
+						if (field[height - 1][0].get_status() == true) { counter_alive++; }
 						else {
 							counter_dead++
 								;
 						}
 					}
 					else {
-						if (field[height - 1][y + j].get_status() == 1) { counter_alive++; }
+						if (field[height - 1][y + j].get_status() == true) { counter_alive++; }
 						else { counter_dead++; }
 					}
 				}
 				else if (x + i > height - 1) {
 					if (y + j < 0) {
-						if (field[0][wight - 1].get_status() == 1) { counter_alive++; }
+						if (field[0][wight - 1].get_status() == true) { counter_alive++; }
 						else { counter_dead++; }
 					}
 					else if (y + j > wight - 1) {
-						if (field[0][0].get_status() == 1) { counter_alive++; }
+						if (field[0][0].get_status() == true) { counter_alive++; }
 						else { counter_dead++; }
 					}
 					else {
-						if (field[0][y + j].get_status() == 1) { counter_alive++; }
+						if (field[0][y + j].get_status() == true) { counter_alive++; }
 						else {counter_dead++;}
 					}
 				}
 				else {
 					if (y + j < 0) {
-						if (field[x + i][wight - 1].get_status() == 1) { counter_alive++; }
+						if (field[x + i][wight - 1].get_status() == true) { counter_alive++; }
 						else {counter_dead++;
 					}
 					}
 					else if (y + j > wight - 1) {
-						if (field[x + i][0].get_status() == 1) { counter_alive++; }
+						if (field[x + i][0].get_status() == true) { counter_alive++; }
 						else { counter_dead++; }
 					}
 					else {
-						if (field[x+i][y+j].get_status() == 1) { counter_alive++; }
+						if (field[x+i][y+j].get_status() == true) { counter_alive++; }
 						else {counter_dead++;}
 					}
 				}
 			}
 		}
 	}
-	if (field[x][y].get_status() == 1) {
+	if (field[x][y].get_status() == true) {
 		if (counter_alive == 2 || counter_alive == 3) {
 			return true;
 		}
@@ -127,16 +127,16 @@ void Field::next_iteration() {
 	}
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < wight; j++) {
-			copy[i][j].status = field[i][j].status;
+			copy[i][j].alive_or_not = field[i][j].alive_or_not;
 		}
 	}
 	for (size_t i = 0; i < height; i++) {
 		for (size_t j = 0; j < wight; j++) {
 			bool stat = this->update_status(i, j);
 			copy[i][j].update_status(stat);
-			if (stat) {Draw_cell(i, j, OFF_COLOUR); }
+			if (stat) {Draw_cell(i, j, ON_COLOUR); }
 			else {
-				Draw_cell(i, j, ON_COLOUR);
+				Draw_cell(i, j, OFF_COLOUR);
 			}
 		}
 	}
@@ -171,7 +171,7 @@ void Field::cleaning() {
 std::ostream& operator<<(std::ostream& s, const Field& f) {
 	for (int i = 0; i < f.height; i++) {
 		for (int j = 0; j < f.wight; j++) {
-			if (f.field[i][j].get_status() == 1) {
+			if (f.field[i][j].get_status() == true) {
 				s<< "*";
 			}
 			else {

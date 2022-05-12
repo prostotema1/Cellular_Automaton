@@ -2,7 +2,7 @@
 #include"Cell.h"
 #include<iostream>
 #include<random>
-#include"SDL.h"
+#include"include/SDL.h"
 #define OFF_COLOUR 0x00
 #define ON_COLOUR 0xFF
 

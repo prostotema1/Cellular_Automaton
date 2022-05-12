@@ -3,8 +3,8 @@
 #include<Windows.h>
 #include <ctime>
 #include<SDL.h>
-#define LIMIT_RATE 1;
-#define TICK_RATE 50;
+const unsigned int LIMIT_RATE = 1;
+const unsigned int TICK_RATE =50;
 #undef main;
 
 void main(){
@@ -31,6 +31,7 @@ void main(){
 	for (int i = 0; i < num; i++){
 		f.next_iteration();
 		SDL_UpdateWindowSurface(f.window);
+		if (LIMIT_RATE) { SDL_Delay(TICK_RATE); }
 	}
 	SDL_DestroyWindow(f.window);
 	SDL_Quit();

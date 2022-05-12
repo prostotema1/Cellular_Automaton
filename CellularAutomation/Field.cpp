@@ -1,6 +1,7 @@
 #include "Field.h"
+//Initialization of Feild with size wight * Height
 void Field::init(int Wight, int Height,int cell_size) {
-	this->wight = Wight;
+	wight = Wight;
 	height = Height;
 	this->cell_size = cell_size;
 	field = new Cell * [height];
@@ -14,6 +15,7 @@ void Field::init(int Wight, int Height,int cell_size) {
 	}
 }
 
+//Draw cell in window
 void Field::Draw_cell(unsigned int x, unsigned int y, unsigned int colour) {
 	Uint8* pixel_ptr = (Uint8*)surface->pixels + (y * cell_size * wight * cell_size + x * cell_size) * 4;
 	for (unsigned int i = 0; i < cell_size; i++)
@@ -28,6 +30,7 @@ void Field::Draw_cell(unsigned int x, unsigned int y, unsigned int colour) {
 	}
 }
 
+//Draw field in console
 void Field::print_field() {
 	for (size_t i = 0; i < height; i++) {
 		for (size_t j = 0; j < wight; j++) {
@@ -43,7 +46,7 @@ void Field::print_field() {
 	std::cout << std::endl << std::endl << std::endl << std::endl;
 }
 
-
+//Update cell status on it's neighbours
 bool Field::update_status(int x, int y) {
 	int counter_dead = 0;
 	int counter_alive = 0;
@@ -116,7 +119,7 @@ bool Field::update_status(int x, int y) {
 	}
 }
 
-
+//Next generation of life
 void Field::next_iteration() {
 	copy = new Cell * [height];
 	for (int i = 0; i < height; i++) {
@@ -142,12 +145,12 @@ void Field::next_iteration() {
 	//delete copy;
 }
 
-
+//If you need to set some cells from a start, you can do it by yourself
 void Field::alive_from_start(int x, int y) {
 	field[x][y].update_status(true);
 }
 
-
+//Fill the field with cells
 void Field::random_fill(int number_of_alive_cells){
 	for (int i = 0; i < number_of_alive_cells; i++) {
 		field[rand() % height][rand() % wight].update_status(true);
@@ -155,7 +158,7 @@ void Field::random_fill(int number_of_alive_cells){
 
 }
 
-
+//Clean the Field
 void Field::cleaning() {
 	for (size_t i = 0; i < height; i++) {
 		delete [] this->field[i];
@@ -163,6 +166,7 @@ void Field::cleaning() {
 	delete [] this->field;
 }
 
+//Output operator in console
 std::ostream& operator<<(std::ostream& s, const Field& f) {
 	for (int i = 0; i < f.height; i++) {
 		for (int j = 0; j < f.wight; j++) {
@@ -179,6 +183,7 @@ std::ostream& operator<<(std::ostream& s, const Field& f) {
 	return s;
 }
 
+//Graphic
 void Field::init_graphic() {
 	SDL_Init(SDL_INIT_VIDEO);
 	window = SDL_CreateWindow("Conway's Game of Life", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, wight * cell_size, height * cell_size, SDL_WINDOW_SHOWN);

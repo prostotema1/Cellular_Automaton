@@ -2,7 +2,7 @@
 #include<iostream>
 #include<Windows.h>
 #include <ctime>
-#include<SDL.h>
+#include"SDL.h"
 const unsigned int LIMIT_RATE = 0;
 const unsigned int TICK_RATE =50;
 #undef main;
